@@ -10,9 +10,11 @@ import org.springframework.context.annotation.Bean;
 import java.util.List;
 
 @SpringBootApplication
-public class CrudDemoApplication {
+public class CrudDemoApplication
+{
 
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		SpringApplication.run(CrudDemoApplication.class, args);
 	}
 	@Bean
