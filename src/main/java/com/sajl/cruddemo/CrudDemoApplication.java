@@ -16,24 +16,35 @@ public class CrudDemoApplication {
 		SpringApplication.run(CrudDemoApplication.class, args);
 	}
 	@Bean
-	public CommandLineRunner commandLineRunner (StudentDAO theStudentDAO )
+	public CommandLineRunner commandLineRunner ( StudentDAO theStudentDAO )
 	{
 		return runner -> {
-			// createStudent( theStudentDAO );
-			// createMultipleStudents( theStudentDAO );
-			// retrieveStudent( theStudentDAO );
-			// retrieveAllStudents( theStudentDAO );
-			// retrieveAllLastName( theStudentDAO );
-			// updateStudent( theStudentDAO );
-			deleteStudent( theStudentDAO );
+			//doTest( theStudentDAO );
 		};
+	}
+
+	private void doTest( StudentDAO theStudentDAO )
+	{
+		createStudent( theStudentDAO );
+		createMultipleStudents( theStudentDAO );
+		retrieveStudent( theStudentDAO );
+		retrieveAllStudents( theStudentDAO );
+		retrieveAllLastName( theStudentDAO );
+		updateStudent( theStudentDAO );
+		deleteStudent( theStudentDAO );
+		deleteAllStudent( theStudentDAO );
+	}
+
+	private void deleteAllStudent(StudentDAO theStudentDAO)
+	{
+		theStudentDAO.deleteAll();
 	}
 
 	private void deleteStudent(StudentDAO theStudentDAO)
 	{
 		System.out.println("Create new Student");
 		Student student = new Student("Temp1", "LastTemp1" , "sathee.archu@gmail.com");
-		System.out.println("Save Student Object " + student.toString() );
+		System.out.println("Save Student Object " + student );
 		theStudentDAO.save( student );
 		System.out.println("Saved Student ID : " + student.getId() );
 		theStudentDAO.delete( student.getId() );
@@ -42,7 +53,6 @@ public class CrudDemoApplication {
 
 	private void updateStudent(StudentDAO theStudentDAO)
 	{
-		int studentId = 1;
 		Student theStudent = theStudentDAO.findById( 1 );
 		theStudent.setEmail( "sathee.archu@gmail.com" );
 		theStudentDAO.update( theStudent );
@@ -105,7 +115,7 @@ public class CrudDemoApplication {
 	{
 		System.out.println("Create new Student");
 		Student student = new Student("Satheesh", "Venkatachalam" , "sathee.archu@gmail.com");
-		System.out.println("Save Student Object " + student.toString() );
+		System.out.println("Save Student Object " + student );
 		theStudentDAO.save( student );
 		System.out.println("Saved Student ID : " + student.getId() );
 	}
